@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jokenpô - Pedra, Papel, Tesoura </title>
+    <!-- Carrega Tailwind CSS para estilização inicial e organização -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-
+        /* Estilos básicos para centralizar o jogo na tela */
         body {
             font-family: 'Inter', sans-serif;
             display: flex;
@@ -17,57 +18,66 @@
             background-color: #1f2937;
         }
 
-    .choice-button {
-        transition: all 0.15s ease-in-out;
-        cursor: pointer;
-    }
-    .choice-button:hover {
-        opacity: 0.9;
-        transform: scale(1.05);
-    }
-    .choice-button:active {
-        transform: scale(0.95);
-    }
+        /* ---------------------------------------------------- */
+        /* CSS CUSTOMIZADO PARA ANIMAÇÕES E ESTILIZAÇÃO DO TÓPICO 2 */
+        /* ---------------------------------------------------- */
 
-    #player-display, #computer-display {
-        transition: background-color 0.5s ease, transform 0.1s ease;
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-        border: 3px solid transparent;
-    }
+        /* Efeito de hover/active nos botões de escolha */
+        .choice-button {
+            transition: all 0.15s ease-in-out;
+            cursor: pointer;
+        }
 
-    @keyframes shake {
-        0% { transform: translate(1px, 1px) rotate(0deg);}
-        10% { transform: translate(-1px, -2px) rotate(-1deg);}
-        20% {transform: translate(-3px, 0px) rotate(1deg);}
-        30% {transform: translate(3px, 2px) rotate(0deg);}
-        40% {transform: translate(1px, -1px) rotate(1deg);}
-        50% {transform: translate(-1px, 2px) rotate(-1deg);}
-        60% {transform: translate(-3px, 1px) rotate(0deg);}
-        70% {transform: translate(3px, 1px) rotate(-1deg);}
-        80% {transform: translate(-1px,-1px) rotate(1deg);}
-        90% {transform: translate(1px, 2px) rotate(0deg);}
-        100% {transform: translate(1px, -2px) rotate(-1deg);}
+        .choice-button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
 
-    }
+        .choice-button:active {
+            transform: scale(0.95);
+        }
 
-    .shaking {
-        animation: shake 0.15s infinite; 
-    }
+        /* Estilo para os displays de jogada (jogador e computador) */
+        #player-display, #computer-display {
+            transition: background-color 0.5s ease, transform 0.1s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+        }
 
-    .win {
-        border-color: #10b981;
-        background-color: #fad3f5;
-    }
- 
-    .lose {
-        border-color: #f00d0d;
-        background-color: #fee2e2;
-    }
+        /* * ANIMAÇÃO DE AGITAR (SHAKE) */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px,-1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
 
-    .draw {
-        border-color: #003da0;
-        background-color: #dbeafe;
-    }
+        .shaking {
+            animation: shake 0.15s infinite; 
+        }
+
+        /* * CLASSES PARA RESULTADOS */
+        .win {
+            border-color: #10b981;
+            background-color: #fad3f5; /* Cor customizada do usuário */
+        }
+    
+        .lose {
+            border-color: #f00d0d;
+            background-color: #fee2e2;
+        }
+
+        .draw {
+            border-color: #003da0;
+            background-color: #dbeafe;
+        }
     </style>
 </head>
 <body class="p-4">
@@ -77,53 +87,64 @@
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Jokenpô: Pedra, Papel e Tesoura </h1>
         <div id="score-board" class="bg-gray-100 p-4 rounded-lg mb-6 shadow-inner text-center">
             <div class="flex justify-around items-center text-lg font-semibold mb-2 ">
+                <!-- Pontuação do Jogador (IDs corrigidos) -->
                 <span id="player-score">Você: 0</span>
+                <!-- Pontuação do Computador (IDs corrigidos) -->
                 <span id="computer-score">Computador: 0</span>
             </div>
-            <p id="result-message" class="text-x1 front-extrabold text-blue-600">Faça sua escolha para começar ! </p>
+            <!-- Classe 'text-xl' corrigida. Classe 'font-extrabold' corrigida. -->
+            <p id="result-message" class="text-xl font-extrabold text-blue-600">Faça sua escolha para começar ! </p>
         </div>
 
-        <h2 class="text-x1 font-semibold text-gray-700 mb-4 text-center">Sua escolha</h2>
+        <!-- Classe 'text-xl' corrigida. -->
+        <h2 class="text-xl font-semibold text-gray-700 mb-4 text-center">Sua escolha</h2>
         <div id="choices-container" class="flex justify-around space-x-4 mb-8">
 
-            <button id="rock" data-choice="Pedra" class="choice-button p-4 flex-1 bg-red-500 text-white rounded-lg shadow-md">
-                <span class="text-2x1">✊</span>Pedra
+            <!-- Data-choice corrigido para minúsculas. Classe 'text-2xl' corrigida. -->
+            <button id="rock" data-choice="pedra" class="choice-button p-4 flex-1 bg-red-500 text-white rounded-lg shadow-md">
+                <span class="text-2xl">✊</span>Pedra
             </button>
-            <button id="paper" data-choice="Papel" class="choice-button p-4 flex-1 bg-green-500 text-white rounded-lg shadow-md">
-                <span class=" text-2x1">✋</span>Papel
+            <!-- Data-choice corrigido para minúsculas. Classe 'text-2xl' corrigida. -->
+            <button id="paper" data-choice="papel" class="choice-button p-4 flex-1 bg-green-500 text-white rounded-lg shadow-md">
+                <span class=" text-2xl">✋</span>Papel
             </button>
-            <button id="scissors" data-choice="Tesoura" class=" choice-button p-4 flex-1 bg-blue-500 text-white rounded-lg shadow-md">
-                <span class="text-2x1">✌️</span>Tesoura
+            <!-- Data-choice corrigido para minúsculas. Classe 'text-2xl' corrigida. -->
+            <button id="scissors" data-choice="tesoura" class=" choice-button p-4 flex-1 bg-blue-500 text-white rounded-lg shadow-md">
+                <span class="text-2xl">✌️</span>Tesoura
             </button>
         </div>
 
         <div class="flex justify-around items-center text-center mb-6 ">
             <div>
                 <p class="font-medium text-gray-600">Você Escolheu:</p>
-                <div id="player-display" class="text-5x1 mt-2 p-3 bg-gray-200 rounded-lg w-20 h-20 flex items-center justify-center mx-auto shadow-inner">?</div>
+                <!-- Classe 'text-5xl' corrigida. -->
+                <div id="player-display" class="text-5xl mt-2 p-3 bg-gray-200 rounded-lg w-20 h-20 flex items-center justify-center mx-auto shadow-inner">?</div>
 
             </div>
-            <div class="text-3xl front-extrabold text-gray-600">VS</div>
+            <div class="text-3xl font-extrabold text-gray-600">VS</div>
             <div>
                 <p class="font-medium text-gray-600">Computador Escolheu:</p>
-                <div id="computer-display" class="text-5x1mt-2 p-3 bg-gray-200 rounded-lg w-20 h-20 flex items-center justify-center mx-auto shadow-inner">?</div>
+                <!-- Classe 'text-5xl' corrigida. -->
+                <div id="computer-display" class="text-5xl mt-2 p-3 bg-gray-200 rounded-lg w-20 h-20 flex items-center justify-center mx-auto shadow-inner">?</div>
             </div>
         </div>
 
-        <button id="restart-button" class="w-full py-3 bg-yellow-500 text-gray-900 font-bold rounded-lg shadow-lg">
-
+        <!-- Texto adicionado ao botão de reiniciar -->
+        <button id="restart-button" class="w-full py-3 bg-yellow-500 text-gray-900 font-bold rounded-lg shadow-lg hover:bg-yellow-600 transition duration-150 transform hover:scale-[1.02]">
+            Reiniciar Jogo
         </button>
+
     </div>
 
     <script>
-        let playerscore = 0;
-        let computerscore = 0;
+        // Variáveis padronizadas para camelCase
+        let playerScore = 0;
+        let computerScore = 0;
         const choices = ['pedra', 'papel', 'tesoura'];
-        const emojimap = {
+        const emojiMap = {
             pedra: '✊',
             papel:'✋',
             tesoura:'✌️'
-
         };
 
         const playerScoreSpan = document.getElementById('player-score');
@@ -139,31 +160,37 @@
             playerDisplay.classList.remove('win', 'lose','draw');
             computerDisplay.classList.remove('win','lose','draw');
         }
-        function getComputerChoise() {
+        
+        // Nome da função corrigido (Choice)
+        function getComputerChoice() {
             const randomIndex = Math.floor(Math.random() * choices.length);
             return choices[randomIndex];
-
         }
 
-        function determineWinner(playerchoice, computerChoice) {
+        function determineWinner(playerChoice, computerChoice) {
             if(playerChoice === computerChoice) {
                 return 'draw';
             }
 
+            // Operadores OR (||) adicionados - CORREÇÃO CRÍTICA
             if (
-                (playerChoice === 'pedra' && computerChoice === 'tesoura')
-                (playerChoice === 'papel' && computerChoice === 'pedra')
-                (playerchoice === 'tesoura' && computerChoice === 'papel')
+                (playerChoice === 'pedra' && computerChoice === 'tesoura') ||
+                (playerChoice === 'papel' && computerChoice === 'pedra') ||
+                (playerChoice === 'tesoura' && computerChoice === 'papel')
             ){
                 playerScore++;
                 return 'win';
             } else {
-                computerscore++;
+                // Variável padronizada para camelCase
+                computerScore++;
                 return 'lose';
             }
         }
 
-        function playGame(playerChoice) {
+        function playGame(rawPlayerChoice) {
+            // Converte para minúsculas para evitar o Case Mismatch do HTML - CORREÇÃO CRÍTICA
+            const playerChoice = rawPlayerChoice.toLowerCase(); 
+
             choiceButtons.forEach(button => button.disabled = true);
             resetDisplayClasses();
             playerDisplay.innerHTML = '?';
@@ -177,86 +204,76 @@
                 computerDisplay.classList.remove('shaking');
                 choiceButtons.forEach(button => button.disabled = false);
 
-                const computerChoice = getComputerChoise();
+                const computerChoice = getComputerChoice();
                 const result = determineWinner(playerChoice, computerChoice);
 
-                playerDisplay.innerHTML = emojimap[playerChoice];
-                computerDisplay.innerHTML = emojimap[computerChoice];
+                // Variável padronizada para camelCase
+                playerDisplay.innerHTML = emojiMap[playerChoice];
+                computerDisplay.innerHTML = emojiMap[computerChoice];
                 
                 playerScoreSpan.textContent = `Você: ${playerScore}`;
                 computerScoreSpan.textContent = `Computador: ${computerScore}`
 
                 switch (result) {
                     case'win':
-                    resultMessage.textContent = 'Você GANHOU a rodada!';
-                    resultMessage.classList.value = 'text-x1 font-extrabold text-green-600';
-                    playerDisplay.classList.add('win');
-                    computerDisplay.classList.add('lose');
-                    break;
-                case 'lose':
-                    resultMessage.textContent = 'Você perdeu a rodada...';
-                    resultMessage.classList.value = 'text-x1 font-extrabold text-red-600' ;
-                    resultMessage.classList.add = ('lose');
-                    computerDisplay.classList.add('win');
-                    break;
-                case 'draw':
-                    resultMessage.textContent = 'EMPATE! tente novamente. ';
-                    resultMessage.classList.value = 'text-x1 font-extrabold text-bold text-blue-600';
-                    playerDisplay.classList.add('draw');
-                    computerDisplay.classList.add('draw');
-                    break;
-
+                        resultMessage.textContent = 'Você GANHOU a rodada!';
+                        // Classe 'text-xl' e 'font-extrabold' corrigidas
+                        resultMessage.classList.value = 'text-xl font-extrabold text-green-600';
+                        playerDisplay.classList.add('win');
+                        computerDisplay.classList.add('lose');
+                        break;
+                    case 'lose':
+                        resultMessage.textContent = 'Você PERDEU a rodada...';
+                        // Classe 'text-xl' e 'font-extrabold' corrigidas
+                        resultMessage.classList.value = 'text-xl font-extrabold text-red-600' ;
+                        // Adição de classe corrigida e aplicada ao playerDisplay
+                        playerDisplay.classList.add('lose'); 
+                        computerDisplay.classList.add('win');
+                        break;
+                    case 'draw':
+                        resultMessage.textContent = 'EMPATE! Tente novamente. ';
+                        // Classe 'text-xl' e 'font-extrabold' corrigidas
+                        resultMessage.classList.value = 'text-xl font-extrabold text-blue-600';
+                        playerDisplay.classList.add('draw');
+                        computerDisplay.classList.add('draw');
+                        break;
                 }
-
-
             }, 1000)
-
-
-
         }
 
-        function restarGame() {
+        // Nome da função corrigido (restartGame)
+        function restartGame() {
             playerScore = 0;
             computerScore = 0;
-            playerScoreSpan.textContent = 'você: 0';
-            computerScoreSpan.textContent = 'computador: o';
+            playerScoreSpan.textContent = 'Você: 0';
+            // Operador de atribuição corrigido: '=' em vez de '-'
+            computerScoreSpan.textContent = 'Computador: 0';
             resultMessage.textContent = 'Faça sua escolha para começar!';
-            resultMessage.classList.value = 'text-x1 front-extrabold text-blue-600';
+            // Classe 'text-xl' e 'font-extrabold' corrigidas
+            resultMessage.classList.value = 'text-xl font-extrabold text-blue-600';
             playerDisplay.innerHTML = '?';
-            computerDisplay.innerHTML - '?';
+            // Operador de atribuição corrigido: '=' em vez de '-'
+            computerDisplay.innerHTML = '?';
             resetDisplayClasses();
             choiceButtons.forEach(button => button.disabled = false);
-
         }
 
+        // 2. Event Listeners (Ouvintes de Eventos)
+        
+        // Uso da variável 'button' do loop corrigido - CORREÇÃO CRÍTICA
         choiceButtons.forEach(button =>{
-            butt4.addEventListener('click', () => {
+            button.addEventListener('click', () => { 
                 const playerChoice = button.getAttribute('data-choice');
                 playGame(playerChoice);
             });
         });
 
+        // Nome da função corrigido para 'restartGame'
         restartButton.addEventListener('click', restartGame);
 
+        // Chamada inicial corrigida
         restartGame();
 
-
     </script>
-
-
-        
-
-        
-
-
-
-
-
-
-        
-
-    
-
-    
 </body>
 </html>
