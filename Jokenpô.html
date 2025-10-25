@@ -120,8 +120,8 @@
         let computerscore = 0;
         const choices = ['pedra', 'papel', 'tesoura'];
         const emojimap = {
-            pedra: '✊'
-            papel:'✋'
+            pedra: '✊',
+            papel:'✋',
             tesoura:'✌️'
 
         };
@@ -209,12 +209,36 @@
                 }
 
 
-            })
+            }, 1000)
 
 
 
         }
 
+        function restarGame() {
+            playerScore = 0;
+            computerScore = 0;
+            playerScoreSpan.textContent = 'você: 0';
+            computerScoreSpan.textContent = 'computador: o';
+            resultMessage.textContent = 'Faça sua escolha para começar!';
+            resultMessage.classList.value = 'text-x1 front-extrabold text-blue-600';
+            playerDisplay.innerHTML = '?';
+            computerDisplay.innerHTML - '?';
+            resetDisplayClasses();
+            choiceButtons.forEach(button => button.disabled = false);
+
+        }
+
+        choiceButtons.forEach(button =>{
+            butt4.addEventListener('click', () => {
+                const playerChoice = button.getAttribute('data-choice');
+                playGame(playerChoice);
+            });
+        });
+
+        restartButton.addEventListener('click', restartGame);
+
+        restartGame();
 
 
     </script>
